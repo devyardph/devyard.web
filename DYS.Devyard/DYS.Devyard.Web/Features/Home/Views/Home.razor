@@ -1,0 +1,54 @@
+﻿@page "/"
+@using DYS.Devyard.Web.Features.Home.ViewModels
+@inherits MvvmComponentBase<HomeViewModel>
+
+<PageTitle>Home</PageTitle>
+
+<!-- Hero -->
+<section class="hero">
+    <h1>The best new products in tech</h1>
+    <p>Discover innovative SaaS tools that help you work smarter</p>
+</section>
+
+<!-- Featured Banner -->
+<div class="featured-banner">
+    <h2><i class="bi bi-rocket-takeoff"></i> Featured Collection of the Week</h2>
+    <p>Explore our handpicked selection of productivity tools</p>
+    <button class="btn-featured">Explore Collection</button>
+</div>
+
+<!-- Filters -->
+<div class="filters-section">
+    <div class="filters">
+        <button class="filter-btn active" data-filter="all">Popular</button>
+        <button class="filter-btn" data-filter="productivity" @onclick="@(() => BindingContext.FitlerProductsAsync("productivity"))">Productivity</button>
+        <button class="filter-btn" data-filter="analytics" @onclick="@(() => BindingContext.FitlerProductsAsync("analytics"))">Analytics</button>
+        <button class="filter-btn" data-filter="communication" @onclick="@(() => BindingContext.FitlerProductsAsync("communication"))">Communication</button>
+        <button class="filter-btn" data-filter="marketing" @onclick="@(() => BindingContext.FitlerProductsAsync("marketing"))">Marketing</button>
+    </div>
+    <div class="search-container">
+        <input type="text" class="search-input" placeholder="Search products..." id="searchInput">
+        <i class="bi bi-search search-icon"></i>
+    </div>
+</div>
+
+<div class="product-list">
+@foreach (var product in BindingContext.FilteredProducts)
+{
+  <div class="product-card" data-category="productivity">
+                    <div class="product-icon">@product.Icon</div>
+                    <div class="product-content">
+                        <div class="product-header">
+                            <h3 class="product-name">@product.Name</h3>
+                            <span class="product-badge">New</span>
+                        </div>
+                        <p class="product-tagline">Streamline your workflow with intelligent task management and team collaboration</p>
+                        <div class="product-meta">
+                            <div class="product-tags">
+                                <a href="#" class="tag">Productivity</a><a href="#" class="tag">Teams</a><a href="#" class="tag">Project Management</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+}
+</div>
