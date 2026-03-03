@@ -1,0 +1,110 @@
+[
+  {
+    "id": 1,
+    "name": "TaskMaster Pro",
+    "tagline": "Streamline your workflow with intelligent task management and team collaboration",
+    "category": "productivity",
+    "upvotes": 342,
+    "comments": 24,
+    "badge": "New",
+    "icon": "TM",
+    "gradient": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+    "tags": [ "Productivity", "Teams", "Project Management" ]
+  },
+  {
+    "id": 2,
+    "name": "DataViz Analytics",
+    "tagline": "Transform your data into actionable insights with powerful visualization tools",
+    "category": "analytics",
+    "upvotes": 289,
+    "comments": 18,
+    "badge": "",
+    "icon": "DV",
+    "gradient": "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+    "tags": [ "Analytics", "Data Visualization", "BI" ]
+  },
+  {
+    "id": 3,
+    "name": "ChatHub Connect",
+    "tagline": "Unified communication platform for seamless team collaboration and engagement",
+    "category": "communication",
+    "upvotes": 256,
+    "comments": 31,
+    "badge": "Featured",
+    "icon": "CH",
+    "gradient": "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+    "tags": [ "Communication", "Team Chat", "Collaboration" ]
+  },
+  {
+    "id": 4,
+    "name": "MarketBoost AI",
+    "tagline": "AI-powered marketing automation to grow your business and maximize ROI",
+    "category": "marketing",
+    "upvotes": 234,
+    "comments": 15,
+    "badge": "",
+    "icon": "MB",
+    "gradient": "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
+    "tags": [ "Marketing", "AI", "Automation" ]
+  },
+  {
+    "id": 5,
+    "name": "ScheduleSync",
+    "tagline": "Smart scheduling solution that syncs with your team and optimizes meeting times",
+    "category": "productivity",
+    "upvotes": 198,
+    "comments": 12,
+    "badge": "",
+    "icon": "SS",
+    "gradient": "linear-gradient(135deg, #30cfd0 0%, #330867 100%)",
+    "tags": [ "Productivity", "Calendar", "Scheduling" ]
+  },
+  {
+    "id": 6,
+    "name": "CloudMetrics",
+    "tagline": "Real-time cloud infrastructure monitoring and performance analytics dashboard",
+    "category": "analytics",
+    "upvotes": 187,
+    "comments": 9,
+     "badge": "",
+    "icon": "CM",
+    "gradient": "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)",
+    "tags": [ "Analytics", "Cloud", "Monitoring" ]
+  },
+  {
+    "id": 7,
+    "name": "VideoMeet Pro",
+    "tagline": "High-quality video conferencing with screen sharing and virtual backgrounds",
+    "category": "communication",
+    "upvotes": 176,
+    "comments": 22,
+    "badge": "New",
+    "icon": "VM",
+    "gradient": "linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)",
+    "tags": [ "Communication", "Video", "Conferencing" ]
+  },
+  {
+    "id": 8,
+    "name": "EmailCampaign Plus",
+    "tagline": "Create, send, and track beautiful email campaigns that convert",
+    "category": "marketing",
+    "upvotes": 165,
+    "comments": 14,
+     "badge": "",
+    "icon": "EC",
+    "gradient": "linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)",
+    "tags": [ "Marketing", "Email", "Campaigns" ]
+  },
+  {
+    "id": 9,
+    "name": "DocuFlow",
+    "tagline": "Document management system with version control and collaboration features",
+    "category": "productivity",
+    "upvotes": 154,
+    "comments": 8,
+     "badge": "",
+    "icon": "DF",
+    "gradient": "linear-gradient(135deg, #ff6e7f 0%, #bfe9ff 100%)",
+    "tags": [ "Productivity", "Documents", "Collaboration" ]
+  }
+]

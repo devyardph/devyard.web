@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevYard - Discover the best new products</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ph-orange: #ff6154;
+            --ph-bg: #f6f6ef;
+            --ph-border: #e2e2e0;
+            --ph-text: #333333;
+            --ph-text-light: #666666;
+            --ph-hover: #fafaf9;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--ph-bg);
+            color: var(--ph-text);
+            line-height: 1.5;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            border-bottom: 1px solid var(--ph-border);
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: fadeInDown 0.6s ease-out;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 22px;
+            font-weight: 400;
+            color: var(--ph-text);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+            animation: slideInLeft 0.6s ease-out;
+        }
+
+        .logo-svg {
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover .logo-svg {
+            transform: rotate(360deg);
+        }
+
+        .logo:hover {
+            opacity: 0.8;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--ph-text-light);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--ph-text);
+        }
+
+        .btn-submit {
+            background: #242424;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(36, 36, 36, 0.3);
+            background: #333333;
+        }
+
+        .btn-submit:hover {
+            opacity: 0.9;
+        }
+
+        /* Main Container */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 32px 24px;
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            margin-bottom: 48px;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--ph-text);
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--ph-text-light);
+            margin-bottom: 24px;
+        }
+
+        /* Filters */
+        .filters-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-out 0.5s both;
+        }
+
+        .filters {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            flex: 1;
+        }
+
+        .filter-btn {
+            background: white;
+            border: 1px solid var(--ph-border);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--ph-text);
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover {
+            border-color: #ffd43b;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(255, 212, 59, 0.3);
+        }
+
+        .filter-btn.active {
+            background: #ffd43b;
+            color: #242424;
+            border-color: #ffd43b;
+            font-weight: 600;
+        }
+
+        .search-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-input {
+            border: 1px solid var(--ph-border);
+            background: white;
+            padding: 8px 36px 8px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            width: 280px;
+            transition: all 0.2s;
+            outline: none;
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        .search-input:focus {
+            border-color: var(--ph-orange);
+            box-shadow: 0 0 0 3px rgba(255, 97, 84, 0.1);
+        }
+
+        .search-input::placeholder {
+            color: var(--ph-text-light);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 12px;
+            pointer-events: none;
+            color: var(--ph-text-light);
+            font-size: 16px;
+        }
+
+        /* Product List */
+        .product-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .product-card {
+            background: white;
+            border: 1px solid var(--ph-border);
+            border-radius: 8px;
+            padding: 20px 24px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            animation: fadeInUp 0.4s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .product-card:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            transform: translateY(-4px);
+            border-color: var(--ph-orange);
+        }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .product-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .upvote-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            min-width: 48px;
+        }
+
+        .upvote-btn {
+            width: 48px;
+            height: 48px;
+            border: 1.5px solid var(--ph-border);
+            border-radius: 8px;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .upvote-btn:hover {
+            border-color: var(--ph-orange);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(255, 97, 84, 0.2);
+        }
+
+        .upvote-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .upvote-icon {
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-bottom: 8px solid var(--ph-text-light);
+            margin-bottom: 2px;
+        }
+
+        .upvote-btn:hover .upvote-icon {
+            border-bottom-color: var(--ph-orange);
+        }
+
+        .upvote-count {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--ph-text);
+        }
+
+        .product-icon {
+            width: 72px;
+            height: 72px;
+            min-width: 72px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .product-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .product-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .product-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--ph-text);
+            margin: 0;
+        }
+
+        .product-badge {
+            background: #fef3c7;
+            color: #92400e;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .product-tagline {
+            font-size: 15px;
+            color: var(--ph-text-light);
+            margin-bottom: 12px;
+        }
+
+        .product-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .product-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: var(--ph-bg);
+            color: var(--ph-text-light);
+            font-size: 13px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .tag:hover {
+            background: var(--ph-border);
+        }
+
+        .product-stats {
+            display: flex;
+            gap: 16px;
+            color: var(--ph-text-light);
+            font-size: 13px;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .stat-item i {
+            font-size: 14px;
+        }
+
+        /* Featured Banner */
+        .featured-banner {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 32px;
+            text-align: center;
+            animation: scaleIn 0.8s ease-out 0.4s both;
+        }
+
+        .featured-banner h2 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .featured-banner p {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .btn-featured {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-featured:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .featured-banner {
+                padding: 30px 20px;
+            }
+
+            .featured-banner h2 {
+                font-size: 24px;
+            }
+
+            .featured-banner p {
+                font-size: 14px;
+            }
+
+            .product-card {
+                flex-direction: column;
+                padding: 16px;
+            }
+
+            .upvote-section {
+                flex-direction: row;
+                width: 100%;
+                justify-content: flex-start;
+            }
+
+            .product-icon {
+                width: 56px;
+                height: 56px;
+                min-width: 56px;
+                font-size: 24px;
+            }
+
+            .product-name {
+                font-size: 16px;
+            }
+
+            .product-tagline {
+                font-size: 14px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .filters-section {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .filters {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+
+            .filters::-webkit-scrollbar {
+                display: none;
+            }
+
+            .search-input {
+                width: 100%;
+            }
+
+            .search-container {
+                width: 100%;
+            }
+
+            .main-container {
+                padding: 24px 16px;
+            }
+
+            .header-content {
+                padding: 12px 16px;
+            }
+
+            .btn-submit {
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .logo span {
+                font-size: 16px;
+            }
+
+            .product-card {
+                gap: 12px;
+            }
+
+            .upvote-btn {
+                width: 40px;
+                height: 40px;
+            }
+
+            .upvote-count {
+                font-size: 12px;
+            }
+
+            .filter-btn {
+                font-size: 13px;
+                padding: 6px 14px;
+            }
+
+            .tag {
+                font-size: 12px;
+            }
+        }
+
+        .footer {
+            max-width: 1200px;
+            margin: 80px auto 0;
+            padding: 40px 24px;
+            border-top: 1px solid var(--ph-border);
+            text-align: center;
+            color: var(--ph-text-light);
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="#" class="logo">
+                <svg class="logo-svg" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="24" cy="24" r="24" fill="#242424"/>
+                    <text x="24" y="34" font-family="'DM Sans', sans-serif" font-size="28" font-weight="700" fill="white" text-anchor="middle">D</text>
+                </svg>
+                <span>DevYard</span>
+            </a>
+            <nav class="nav-links">
+                <a href="#" class="nav-link">Products</a>
+                <a href="#" class="nav-link">Community</a>
+                <a href="#" class="nav-link">Stories</a>
+                <a href="#" class="nav-link">Newsletter</a>
+            </nav>
+            <button class="btn-submit">Submit</button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-container">
+        <!-- Hero -->
+        <section class="hero">
+            <h1>The best new products in tech</h1>
+            <p>Discover innovative SaaS tools that help you work smarter</p>
+        </section>
+
+        <!-- Featured Banner -->
+        <div class="featured-banner">
+            <h2><i class="bi bi-rocket-takeoff"></i> Featured Collection of the Week</h2>
+            <p>Explore our handpicked selection of productivity tools</p>
+            <button class="btn-featured">Explore Collection</button>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters-section">
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">Popular</button>
+                <button class="filter-btn" data-filter="productivity">Productivity</button>
+                <button class="filter-btn" data-filter="analytics">Analytics</button>
+                <button class="filter-btn" data-filter="communication">Communication</button>
+                <button class="filter-btn" data-filter="marketing">Marketing</button>
+            </div>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search products..." id="searchInput">
+                <i class="bi bi-search search-icon"></i>
+            </div>
+        </div>
+
+        <!-- Product List -->
+        <div class="product-list">
+            <!-- Products will be dynamically rendered from JSON -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 DevYard. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Products data - Edit this JSON to modify products
+        const productsData = [
+            {
+                id: 1,
+                name: "TaskMaster Pro",
+                tagline: "Streamline your workflow with intelligent task management and team collaboration",
+                category: "productivity",
+                upvotes: 342,
+                comments: 24,
+                badge: "New",
+                icon: "TM",
+                gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                tags: ["Productivity", "Teams", "Project Management"]
+            },
+            {
+                id: 2,
+                name: "DataViz Analytics",
+                tagline: "Transform your data into actionable insights with powerful visualization tools",
+                category: "analytics",
+                upvotes: 289,
+                comments: 18,
+                badge: null,
+                icon: "DV",
+                gradient: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+                tags: ["Analytics", "Data Visualization", "BI"]
+            },
+            {
+                id: 3,
+                name: "ChatHub Connect",
+                tagline: "Unified communication platform for seamless team collaboration and engagement",
+                category: "communication",
+                upvotes: 256,
+                comments: 31,
+                badge: "Featured",
+                icon: "CH",
+                gradient: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+                tags: ["Communication", "Team Chat", "Collaboration"]
+            },
+            {
+                id: 4,
+                name: "MarketBoost AI",
+                tagline: "AI-powered marketing automation to grow your business and maximize ROI",
+                category: "marketing",
+                upvotes: 234,
+                comments: 15,
+                badge: null,
+                icon: "MB",
+                gradient: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
+                tags: ["Marketing", "AI", "Automation"]
+            },
+            {
+                id: 5,
+                name: "ScheduleSync",
+                tagline: "Smart scheduling solution that syncs with your team and optimizes meeting times",
+                category: "productivity",
+                upvotes: 198,
+                comments: 12,
+                badge: null,
+                icon: "SS",
+                gradient: "linear-gradient(135deg, #30cfd0 0%, #330867 100%)",
+                tags: ["Productivity", "Calendar", "Scheduling"]
+            },
+            {
+                id: 6,
+                name: "CloudMetrics",
+                tagline: "Real-time cloud infrastructure monitoring and performance analytics dashboard",
+                category: "analytics",
+                upvotes: 187,
+                comments: 9,
+                badge: null,
+                icon: "CM",
+                gradient: "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)",
+                tags: ["Analytics", "Cloud", "Monitoring"]
+            },
+            {
+                id: 7,
+                name: "VideoMeet Pro",
+                tagline: "High-quality video conferencing with screen sharing and virtual backgrounds",
+                category: "communication",
+                upvotes: 176,
+                comments: 22,
+                badge: "New",
+                icon: "VM",
+                gradient: "linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)",
+                tags: ["Communication", "Video", "Conferencing"]
+            },
+            {
+                id: 8,
+                name: "EmailCampaign Plus",
+                tagline: "Create, send, and track beautiful email campaigns that convert",
+                category: "marketing",
+                upvotes: 165,
+                comments: 14,
+                badge: null,
+                icon: "EC",
+                gradient: "linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)",
+                tags: ["Marketing", "Email", "Campaigns"]
+            },
+            {
+                id: 9,
+                name: "DocuFlow",
+                tagline: "Document management system with version control and collaboration features",
+                category: "productivity",
+                upvotes: 154,
+                comments: 8,
+                badge: null,
+                icon: "DF",
+                gradient: "linear-gradient(135deg, #ff6e7f 0%, #bfe9ff 100%)",
+                tags: ["Productivity", "Documents", "Collaboration"]
+            }
+        ];
+
+        // Render products
+        function renderProducts(products) {
+            const productList = document.querySelector('.product-list');
+            productList.innerHTML = '';
+
+            products.forEach((product, index) => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.setAttribute('data-category', product.category);
+                
+                productCard.innerHTML = `
+                    <div class="upvote-section">
+                        <div class="upvote-btn">
+                            <div class="upvote-icon"></div>
+                            <div class="upvote-count">${product.upvotes}</div>
+                        </div>
+                    </div>
+                    <div class="product-icon" style="background: ${product.gradient};">${product.icon}</div>
+                    <div class="product-content">
+                        <div class="product-header">
+                            <h3 class="product-name">${product.name}</h3>
+                            ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
+                        </div>
+                        <p class="product-tagline">${product.tagline}</p>
+                        <div class="product-meta">
+                            <div class="product-tags">
+                                ${product.tags.map(tag => `<a href="#" class="tag">${tag}</a>`).join('')}
+                            </div>
+                            <div class="product-stats">
+                                <span class="stat-item"><i class="bi bi-chat-dots"></i> ${product.comments} comments</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                productList.appendChild(productCard);
+            });
+
+            // Re-attach upvote listeners
+            attachUpvoteListeners();
+        }
+
+        // Attach upvote event listeners
+        function attachUpvoteListeners() {
+            document.querySelectorAll('.upvote-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const countEl = btn.querySelector('.upvote-count');
+                    let count = parseInt(countEl.textContent);
+                    
+                    if (btn.classList.contains('upvoted')) {
+                        count--;
+                        btn.classList.remove('upvoted');
+                        btn.style.borderColor = '';
+                        btn.style.background = '';
+                    } else {
+                        count++;
+                        btn.classList.add('upvoted');
+                        btn.style.borderColor = 'var(--ph-orange)';
+                        btn.style.background = '#fff5f3';
+                    }
+                    
+                    countEl.textContent = count;
+                });
+            });
+        }
+
+        // Filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Clear search when filtering
+                searchInput.value = '';
+
+                // Update active button
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const filter = button.getAttribute('data-filter');
+
+                // Filter and re-render products
+                const filteredProducts = filter === 'all' 
+                    ? productsData 
+                    : productsData.filter(product => product.category === filter);
+
+                renderProducts(filteredProducts);
+
+                // Add staggered animation
+                const productCards = document.querySelectorAll('.product-card');
+                productCards.forEach((card, index) => {
+                    card.style.animation = 'none';
+                    setTimeout(() => {
+                        card.style.animation = 'fadeInUp 0.4s ease-out';
+                    }, index * 50);
+                });
+            });
+        });
+
+        // Initial render
+        renderProducts(productsData);
+
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        let searchTimeout;
+
+        searchInput.addEventListener('input', (e) => {
+            clearTimeout(searchTimeout);
+            const searchTerm = e.target.value.toLowerCase().trim();
+
+            // Debounce search
+            searchTimeout = setTimeout(() => {
+                if (searchTerm === '') {
+                    // Show all products if search is empty
+                    const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-filter');
+                    const filteredProducts = activeFilter === 'all' 
+                        ? productsData 
+                        : productsData.filter(product => product.category === activeFilter);
+                    renderProducts(filteredProducts);
+                } else {
+                    // Search across name, tagline, and tags
+                    const searchResults = productsData.filter(product => {
+                        return product.name.toLowerCase().includes(searchTerm) ||
+                               product.tagline.toLowerCase().includes(searchTerm) ||
+                               product.tags.some(tag => tag.toLowerCase().includes(searchTerm)) ||
+                               product.category.toLowerCase().includes(searchTerm);
+                    });
+
+                    renderProducts(searchResults);
+
+                    // Show message if no results
+                    if (searchResults.length === 0) {
+                        const productList = document.querySelector('.product-list');
+                        productList.innerHTML = `
+                            <div style="text-align: center; padding: 60px 20px; color: var(--ph-text-light);">
+                                <i class="bi bi-search" style="font-size: 48px; margin-bottom: 16px; display: block;"></i>
+                                <h3 style="font-size: 20px; margin-bottom: 8px; color: var(--ph-text);">No products found</h3>
+                                <p>Try searching for something else</p>
+                            </div>
+                        `;
+                    }
+                }
+            }, 300);
+        });
+    </script>
+</body>
+</html>
